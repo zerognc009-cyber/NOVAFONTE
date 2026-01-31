@@ -1,0 +1,20 @@
+backend:
+  name: git-gateway
+  repo: zerognc009-cyber/NOVAFONTE
+  branch: main
+
+media_folder: "img"
+public_folder: "/img"
+
+collections:
+  - name: "produtos"
+    label: "Produtos"
+    folder: "data/produtos"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Nome do Produto", name: "title", widget: "string"}
+      - {label: "Preço", name: "price", widget: "string"}
+      - {label: "Categoria", name: "category", widget: "select", options: ["TÊNIS", "BONÉS", "ROUPAS"]}
+      - {label: "Foto", name: "image", widget: "image"}
+      - {label: "Tamanhos", name: "sizes", widget: "string", hint: "Ex: 38, 39, 40"}
