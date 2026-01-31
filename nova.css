@@ -1,0 +1,825 @@
+/* Menu de Navegação Premium */
+.sub-nav {
+    background-color: #000000;
+    border-bottom: 1px solid #1a1a1a;
+    padding: 15px 0;
+    display: flex;
+    justify-content: center;
+    animation: fadeIn 1.5s ease-out;
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    gap: 40px;
+}
+
+.nav-link {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+    position: relative;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+}
+
+.nav-link:hover {
+    color: #888;
+}
+
+/* Linha animada ao passar o mouse */
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: #ffffff;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Ajuste para Celular */
+@media (max-width: 768px) {
+    .nav-list {
+        gap: 20px;
+    }
+    .nav-link {
+        font-size: 11px;
+        letter-spacing: 1px;
+    }
+}
+
+/* CARROSEL DE MARCAS - NOSSAS MARCAS*/
+
+/* Container Geral da Seção de Marcas */
+.marcas-section {
+    background-color: #121212; /* Cor exata solicitada */
+    padding: 30px 0;
+    width: 100%;
+    display: flex;
+    justify-content: center; 
+    border-bottom: 1px solid #1a1a1a;
+}
+
+/* Bloco central que segura tudo (Título, Setas e Logos) */
+.marcas-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    max-width: 1200px;
+    width: 95%;
+}
+
+/* Texto "Nossas Marcas" */
+.marcas-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 0px;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+
+/* Área dos Logos com Scroll Suave */
+.marcas-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    padding: 10px;
+}
+
+/* Círculos das Marcas (Brancos para destacar os logos pretos) */
+.marca-item {
+    flex: 0 0 auto;
+    width: 75px;
+    height: 75px;
+    background-color: #ffffff; 
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+}
+
+.marca-item:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+.marca-item img {
+    width: 70%;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Setas de navegação cinzas */
+.arrow-btn {
+    background: none;
+    border: none;
+    font-size: 22px;
+    color: #555; 
+    cursor: pointer;
+    padding: 0 10px;
+    transition: color 0.3s, transform 0.2s;
+}
+
+.arrow-btn:hover {
+    color: #ffffff;
+    transform: scale(1.2);
+}
+
+/* Adaptação para Celular */
+@media (max-width: 768px) {
+    .marcas-container {
+        gap: 8px;
+    }
+    .marcas-title {
+        font-size: 11px;
+    }
+    .marca-item {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+/* --- ESTILO DO PAINEL TELA CHEIA --- */
+.full-screen-panel {
+    position: fixed;
+    top: 100px; /* Alinhado à altura do seu cabeçalho */
+    left: 0;
+    width: 100%;
+    height: calc(100% - 100px);
+    background-color: #121212;
+    z-index: 999; /* Fica logo abaixo do header (z-index 1000) */
+    transform: translateY(100%); /* Começa escondido abaixo da tela */
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-y: auto;
+    padding: 20px 5%;
+}
+
+/* Ativa o painel */
+.full-screen-panel.active {
+    transform: translateY(0);
+}
+
+/* Cabeçalho interno do painel */
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #222;
+    padding-bottom: 20px;
+}
+
+#panelTitle {
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 45px;
+    cursor: pointer;
+    line-height: 1;
+}
+
+/* Overlay Escurecido */
+.overlay {
+    position: fixed;
+    top: 100px;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 100px);
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(4px);
+    display: none;
+    z-index: 998;
+}
+
+.overlay.active {
+    display: block;
+}
+
+/* --- ADAPTAÇÃO PARA CELULAR (2026-01-26) --- */
+@media (max-width: 768px) {
+    .full-screen-panel {
+        top: 160px; /* Ajuste para cabeçalho maior no mobile */
+        height: calc(100% - 160px);
+    }
+    .overlay {
+        top: 160px;
+    }
+    #panelTitle {
+        font-size: 18px;
+    }
+}
+
+/* Container que segura os cards dentro do painel */
+.vitrine-fluxo {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 20px 0;
+    justify-content: center;
+}
+
+/* Card Branco Estilo E-commerce (Baseado na sua foto) */
+.card-soft {
+    background: #ffffff;
+    width: 230px;
+    border-radius: 6px;
+    padding: 12px;
+    border: 1px solid #e6e6e6;
+    position: relative;
+    text-align: left;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    transition: transform 0.2s;
+}
+
+.card-soft:hover {
+    transform: translateY(-3px);
+}
+
+/* Imagem do Produto */
+.card-soft img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+
+/* Nome do Produto (Discreto) */
+.prod-nome {
+    display: block;
+    font-size: 13px;
+    color: #666;
+    font-weight: 400; /* Mais fino igual na foto */
+    margin-bottom: 10px;
+    line-height: 1.2;
+    min-height: 32px;
+}
+
+/* Preço Principal */
+.prod-preco {
+    display: block;
+    font-size: 20px;
+    color: #1a1a1a;
+    font-weight: 800;
+    margin-bottom: 2px;
+}
+
+/* Preço com Pix (Destaque) */
+.prod-pix {
+    display: block;
+    font-size: 13px;
+    color: #000;
+    font-weight: 800;
+}
+
+/* --- AJUSTES PARA CELULAR (2026-01-26) --- */
+@media (max-width: 768px) {
+    .vitrine-fluxo {
+        gap: 10px;
+        padding: 10px;
+        justify-content: space-between;
+    }
+
+    .card-soft {
+        width: 48%; /* Exatamente 2 cards por linha no celular */
+        padding: 10px;
+        margin-bottom: 5px;
+    }
+
+    .prod-preco {
+        font-size: 16px;
+    }
+
+    .prod-nome {
+        font-size: 11px;
+        min-height: 28px;
+    }
+
+    .prod-pix {
+        font-size: 11px;
+    }
+}
+
+/* Ajuste Mobile */
+@media (max-width: 768px) {
+    .card-soft { width: 48%; padding: 10px; }
+    .prod-preco { font-size: 18px; }
+    .prod-pix { font-size: 12px; }
+}
+
+/* Container da imagem com tamanho fixo */
+.img-container {
+    width: 100%;
+    aspect-ratio: 1/1; /* Mantém o quadrado perfeito */
+    overflow: hidden;  /* CORTA o que sobrar da foto no zoom */
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Ou 'cover' se quiser que a foto ocupe tudo */
+    transition: transform 0.5s ease; /* Velocidade do zoom */
+}
+
+/* Quando passar o mouse no CARD, a FOTO dentro da div dá zoom */
+.card-soft:hover .img-container img {
+    transform: scale(1.3); /* Aproxima a foto em 30% */
+}
+
+/* Efeito de brilho e subida do card que você pediu */
+.card-soft {
+    background: #fff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-soft:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
+    border-color: #fff;
+}
+
+/* Ajuste Mobile (2026-01-26) */
+@media (max-width: 768px) {
+    .card-soft:hover .img-container img {
+        transform: none; /* Remove zoom no celular para não bugar */
+    }
+}
+
+/* Container do Banner ajustado */
+.banner-container {
+    width: 100%;
+    padding: 20px 5%;
+    display: flex;
+    justify-content: center;
+}
+
+.banner-moldura {
+    width: 100%;
+    max-width: 1250px;
+    /* Define uma proporção (ex: 16/7). Isso evita que a imagem fique gigante ou cortada */
+    aspect-ratio: 16 / 7; 
+    border-radius: 20px;
+    overflow: hidden; 
+    border: 1px solid #222;
+    background-color: #000;
+}
+
+.img-zoom-suave {
+    width: 100%;
+    height: 100%;
+    /* 'cover' preenche tudo sem deformar a foto */
+    object-fit: cover; 
+    /* 'center' garante que o meio da foto sempre apareça */
+    object-position: center; 
+    animation: zoomInfinito 15s infinite alternate ease-in-out;
+    display: block;
+}
+
+@keyframes zoomInfinito {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.1); }
+}
+
+/* --- ADAPTAÇÃO PARA CELULAR --- */
+@media (max-width: 768px) {
+    .banner-moldura {
+        /* No celular a foto fica um pouco mais alta para aparecer melhor */
+        aspect-ratio: 4 / 3; 
+        border-radius: 12px;
+    }
+}
+
+.footer-premium {
+    background-color: #000;
+    color: #fff;
+    padding: 60px 5% 20px 5%;
+    border-top: 1px solid #222;
+    margin-top: 50px;
+}
+
+/* Ícones Sociais Centralizados */
+.footer-social {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 50px;
+}
+
+.footer-social img {
+    width: 30px;
+    filter: invert(1); /* Deixa os ícones brancos se forem pretos */
+    transition: 0.3s;
+}
+
+.footer-social img:hover {
+    transform: scale(1.2);
+}
+
+/* Container das Colunas */
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-column h3 {
+    font-size: 14px;
+    letter-spacing: 1px;
+    margin-bottom: 25px;
+    font-weight: 800;
+}
+
+.footer-column ul {
+    list-style: none;
+}
+
+.footer-column ul li {
+    margin-bottom: 12px;
+    font-size: 13px;
+    color: #fff;
+    font-weight: 400; /* Links mais finos como na imagem */
+}
+
+.footer-column a {
+    text-decoration: none;
+    color: #fff;
+    transition: 0.3s;
+}
+
+.footer-column a:hover {
+    color: #9b51e0; /* Roxo para combinar com a etiqueta de frete */
+}
+
+/* Rodapé de Pagamentos */
+.footer-bottom {
+    margin-top: 60px;
+    padding-top: 20px;
+    border-top: 1px solid #111;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.footer-bottom span {
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.payment-icons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.payment-icons img {
+    height: 25px;
+    object-fit: contain;
+}
+
+/* --- ADAPTAÇÃO PARA CELULAR (2026-01-27) --- */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        text-align: left;
+    }
+    
+    .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+/* Área do título à esquerda no painel */
+.header-interno-painel {
+    width: 100%;
+    padding: 10px 0 25px 0; /* Espaço para não encostar nos cards */
+    text-align: left; /* Alinhado à esquerda conforme a imagem */
+}
+
+/* "Início > Roupas" bem discreto */
+.breadcrumb-fino {
+    font-size: 12px;
+    color: #888;
+    font-weight: 400; /* Mais fino para destacar o título */
+    margin-bottom: 8px;
+}
+
+.breadcrumb-fino span {
+    color: #fff;
+    font-weight: 800;
+}
+
+/* O título "Roupas" no estilo Montserrat Extra Bold */
+.titulo-pagina-painel {
+    font-size: 42px; /* Tamanho imponente mas equilibrado */
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -1px;
+}
+
+/* --- ADAPTAÇÃO MOBILE (2026-01-27) --- */
+@media (max-width: 768px) {
+    .titulo-pagina-painel {
+        font-size: 30px;
+        padding-left: 10px;
+    }
+    .breadcrumb-fino {
+        padding-left: 10px;
+    }
+}
+
+/* Organização do Layout: Filtro na esquerda, Vitrine na direita */
+.layout-vitrine-com-filtro {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+.barra-filtros {
+    width: 250px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Itens de Filtro (Estilo botões da imagem) */
+.filtro-item {
+    background: #111;
+    border: 1px solid #222;
+    padding: 15px 20px;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.filtro-item:hover {
+    border-color: #fff;
+}
+
+.filtro-item .seta {
+    font-size: 18px;
+    color: #555;
+}
+
+/* Box de Preço */
+.filtro-box-preco {
+    background: #111;
+    border: 1px solid #222;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+.titulo-filtro {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.inputs-preco {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.inputs-preco input {
+    width: 100%;
+    background: #000;
+    border: 1px solid #333;
+    padding: 8px;
+    color: #fff;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+.btn-aplicar {
+    width: 100%;
+    padding: 10px;
+    background: #222;
+    border: none;
+    color: #888;
+    font-weight: 800;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: 0.3s;
+}
+
+.btn-aplicar:hover {
+    background: #fff;
+    color: #000;
+}
+
+/* --- ADAPTAÇÃO MOBILE (2026-01-27) --- */
+@media (max-width: 768px) {
+    .layout-vitrine-com-filtro {
+        flex-direction: column; /* No celular, o filtro fica em cima dos produtos */
+    }
+    .barra-filtros {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}
+
+/* Ícone do Carrinho Flutuante */
+.cart-trigger {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #111;
+    border: 1px solid #333;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 2500;
+    transition: all 0.3s ease;
+}
+
+.cart-trigger:hover {
+    transform: scale(1.1);
+    border-color: #fff;
+}
+
+/* Painel Lateral do Carrinho */
+.carrinho-lateral {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Começa fora da tela */
+    width: 350px;
+    height: 100vh;
+    background: #000; /* Fundo escuro igual ao site */
+    border-left: 1px solid #222;
+    z-index: 3000;
+    transition: 0.4s ease-in-out;
+    padding: 20px;
+    box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+}
+
+.carrinho-lateral.active {
+    right: 0; /* Desliza para dentro */
+}
+
+/* Overlay para escurecer o fundo */
+.cart-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    display: none;
+    z-index: 2900;
+}
+
+.cart-overlay.active {
+    display: block;
+}
+
+/* Mensagem de Vazio (Igual à foto) */
+.carrinho-vazio-msg {
+    border: 1px solid #222;
+    padding: 15px;
+    color: #888;
+    font-size: 14px;
+    text-align: center;
+    margin-top: 50px;
+}
+
+/* Carrinho Lateral */
+.carrinho-lateral {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 350px;
+    height: 100vh;
+    background: #000;
+    border-left: 1px solid #222;
+    z-index: 3000;
+    transition: 0.4s ease-in-out;
+    padding: 20px;
+}
+.carrinho-lateral.active { right: 0; }
+.cart-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.8);
+    display: none; z-index: 2900;
+}
+.cart-overlay.active { display: block; }
+.carrinho-vazio-msg {
+    border: 1px solid #222;
+    padding: 15px;
+    color: #888;
+    font-size: 13px;
+    text-align: center;
+    margin-top: 50px;
+}
+.cart-trigger {
+    position: fixed;
+    top: 25px; right: 25px;
+    z-index: 2000; cursor: pointer;
+    background: #000; border: 1px solid #222;
+    padding: 12px; border-radius: 50%;
+}
+
+/* Mensagem que aparece no topo da tela */
+#aviso-topo {
+    position: fixed;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #000;
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 15px 30px;
+    font-weight: 800;
+    z-index: 5000;
+    transition: 0.5s ease-in-out;
+    text-transform: uppercase;
+}
+#aviso-topo.show { top: 20px; }
+
+.cart-button-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex: 1;
+}
+
+.cart-icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    padding: 8px;
+    transition: transform 0.3s ease;
+}
+
+.cart-icon-btn:hover {
+    transform: scale(1.1);
+}
+
+.cart-icon-svg {
+    width: 28px;
+    height: 28px;
+    fill: none;
+    stroke: #ffffff; /* Cor branca para o tema Dark */
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* Contador de itens (aquela bolinha em cima do ícone) */
+#cart-count {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #ffffff;
+    color: #000000;
+    font-size: 10px;
+    font-weight: 800;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
